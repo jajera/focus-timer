@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focus Timer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #1a1a2e;
+      color: #e0e0e0;
+    }
+
+    .timer-container {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #a0a0b0;
+    }
+
+    #countdown-display {
+      font-size: 6rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+
+    .duration-group {
+      margin-bottom: 2rem;
+    }
+
+    .duration-group label {
+      display: block;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      color: #a0a0b0;
+    }
+
+    #duration-input {
+      width: 5rem;
+      padding: 0.5rem;
+      font-size: 1.25rem;
+      text-align: center;
+      border: 2px solid #3a3a5c;
+      border-radius: 0.5rem;
+      background-color: #16213e;
+      color: #ffffff;
+    }
+
+    #duration-input:focus {
+      outline: none;
+      border-color: #4a9eff;
+    }
+
+    #duration-input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .controls button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+
+    .controls button:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+
+    .controls button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    #start-btn {
+      background-color: #4caf50;
+      color: #ffffff;
+    }
+
+    #pause-btn {
+      background-color: #ff9800;
+      color: #ffffff;
+    }
+
+    #reset-btn {
+      background-color: #f44336;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <main class="timer-container">
+    <h1>Focus Timer</h1>
+
+    <div id="countdown-display" aria-live="polite" aria-atomic="true">25:00</div>
+
+    <div class="duration-group">
+      <label for="duration-input">Duration (minutes)</label>
+      <input
+        type="number"
+        id="duration-input"
+        min="1"
+        max="120"
+        step="1"
+        value="25"
+        aria-label="Timer duration in minutes"
+      >
+    </div>
+
+    <div class="controls">
+      <button id="start-btn" type="button">Start</button>
+      <button id="pause-btn" type="button" disabled>Pause</button>
+      <button id="reset-btn" type="button" disabled>Reset</button>
+    </div>
+  </main>
+
+  <!-- Timer logic will be added in tasks 4.x -->
+  <script type="module">
+    import { init } from './src/app.js';
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
