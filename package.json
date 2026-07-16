@@ -1,0 +1,13 @@
+{
+  "name": "focus-timer",
+  "version": "1.0.0",
+  "description": "A simple static focus timer web application",
+  "type": "module",
+  "scripts": {
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "fast-check": "^3.22.0",
+    "vitest": "^2.1.8"
+  }
+}

@@ -6,19 +6,19 @@ A static focus timer web application implemented as vanilla HTML/CSS/JS with no 
 
 ## Tasks
 
-- [ ] 1. Set up project structure and testing infrastructure
-  - [ ] 1.1 Create the base HTML file with embedded CSS and placeholder structure
+- [x] 1. Set up project structure and testing infrastructure
+  - [x] 1.1 Create the base HTML file with embedded CSS and placeholder structure
     - Create `index.html` with the countdown display element, duration input field, and Start/Pause/Reset buttons
     - Include basic CSS styling for a clean, centered layout with a large countdown display
     - _Requirements: 1.1, 2.1, 3.1, 4.1, 5.1_
 
-  - [ ] 1.2 Initialize the project with Vitest and fast-check
+  - [x] 1.2 Initialize the project with Vitest and fast-check
     - Create `package.json` with vitest and fast-check as dev dependencies
     - Create `vitest.config.js` with appropriate configuration
     - _Requirements: Testing infrastructure_
 
-- [ ] 2. Implement timer state machine logic
-  - [ ] 2.1 Create the timer state module with core data model and state transitions
+- [x] 2. Implement timer state machine logic
+  - [x] 2.1 Create the timer state module with core data model and state transitions
     - Create `src/timer.js` exporting pure functions: `createInitialState()`, `start(state)`, `pause(state)`, `reset(state)`, `tick(state)`, `setDuration(state, minutes)`, `validateDuration(value)`, and `formatTime(remainingSeconds)`
     - `createInitialState()` returns `{ status: 'idle', durationMinutes: 25, remainingSeconds: 1500 }`
     - `start()` transitions idle/paused → running (no-op if already running)
@@ -30,50 +30,50 @@ A static focus timer web application implemented as vanilla HTML/CSS/JS with no 
     - `formatTime()` converts seconds to zero-padded `MM:SS` string
     - _Requirements: 1.1, 1.2, 1.3, 1.4, 2.1, 2.6, 2.7, 3.1, 3.2, 4.1, 5.1, 5.2, 6.1, 6.2_
 
-  - [ ]* 2.2 Write property test for time formatting
+  - [x] 2.2 Write property test for time formatting
     - **Property 1: Time formatting produces valid MM:SS**
     - **Validates: Requirements 1.1**
 
-  - [ ]* 2.3 Write property test for tick in running state
+  - [x] 2.3 Write property test for tick in running state
     - **Property 2: Tick in running state decrements and completes**
     - **Validates: Requirements 1.2, 6.1, 6.2**
 
-  - [ ]* 2.4 Write property test for tick in non-running state
+  - [x] 2.4 Write property test for tick in non-running state
     - **Property 3: Tick in non-running state is a no-op**
     - **Validates: Requirements 1.4**
 
-  - [ ]* 2.5 Write property test for duration validation
+  - [x] 2.5 Write property test for duration validation
     - **Property 4: Duration validation accepts valid and rejects invalid**
     - **Validates: Requirements 2.1, 2.7**
 
-  - [ ]* 2.6 Write property test for setDuration in idle state
+  - [x] 2.6 Write property test for setDuration in idle state
     - **Property 5: setDuration in idle state synchronizes remainingSeconds**
     - **Validates: Requirements 1.3, 2.6**
 
-  - [ ]* 2.7 Write property test for start transitions
+  - [x] 2.7 Write property test for start transitions
     - **Property 6: Start transitions to running preserving time**
     - **Validates: Requirements 3.1, 3.2**
 
-  - [ ]* 2.8 Write property test for pause preservation
+  - [x] 2.8 Write property test for pause preservation
     - **Property 7: Pause preserves remaining time**
     - **Validates: Requirements 4.1**
 
-  - [ ]* 2.9 Write property test for reset restoration
+  - [x] 2.9 Write property test for reset restoration
     - **Property 8: Reset restores idle with full duration**
     - **Validates: Requirements 5.1, 5.2**
 
-- [ ] 3. Checkpoint - Verify state machine logic
+- [x] 3. Checkpoint - Verify state machine logic
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 4. Implement DOM rendering and event handling
-  - [ ] 4.1 Create the DOM renderer module
+- [x] 4. Implement DOM rendering and event handling
+  - [x] 4.1 Create the DOM renderer module
     - Create `src/renderer.js` that exports a `render(state)` function
     - Updates the countdown display text with formatted time from state
     - Enables/disables Start, Pause, Reset buttons based on state status (per the button state table in design)
     - Locks/unlocks the duration input based on state (editable only in idle)
     - _Requirements: 1.1, 1.3, 1.4, 2.3, 2.4, 2.5, 3.3, 4.2, 4.3, 4.4, 5.3_
 
-  - [ ] 4.2 Create the app controller that wires state machine to DOM
+  - [x] 4.2 Create the app controller that wires state machine to DOM
     - Create `src/app.js` that initializes state, sets up event listeners, and manages the interval
     - Start button click: calls `start()`, starts `setInterval(tick, 1000)`, re-renders
     - Pause button click: calls `pause()`, clears interval, re-renders
@@ -82,29 +82,29 @@ A static focus timer web application implemented as vanilla HTML/CSS/JS with no 
     - Tick callback: calls `tick()`, re-renders, clears interval if state transitions to idle (completion)
     - _Requirements: 2.6, 2.7, 3.1, 3.2, 4.1, 5.1, 5.2, 5.4, 6.1, 6.2, 6.3_
 
-  - [ ] 4.3 Integrate modules into index.html
+  - [x] 4.3 Integrate modules into index.html
     - Add `<script type="module">` imports in `index.html` to load `src/app.js`
     - Ensure the app initializes on DOMContentLoaded with default state (25 minutes)
     - Verify the countdown displays "25:00" on initial load
     - _Requirements: 1.3, 2.2_
 
-- [ ] 5. Checkpoint - Verify full integration
+- [x] 5. Checkpoint - Verify full integration
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 6. Write unit tests for edge cases and integration behavior
-  - [ ]* 6.1 Write unit tests for initial state and button states
+- [x] 6. Write unit tests for edge cases and integration behavior
+  - [x] 6.1 Write unit tests for initial state and button states
     - Test initial state defaults to 25 minutes idle
     - Test button enabled/disabled states match the design state table for all three states
     - Test duration input is editable only in idle state
     - _Requirements: 2.2, 2.3, 2.4, 2.5, 3.3, 4.2, 4.3, 4.4, 5.3_
 
-  - [ ]* 6.2 Write unit tests for edge cases
+  - [x] 6.2 Write unit tests for edge cases
     - Test start is rejected when duration < 1 (guard against invalid state)
     - Test timer completion makes input editable (transitions to idle)
     - Test reset clears interval promptly (within 100ms requirement)
     - _Requirements: 3.4, 5.4, 6.3_
 
-- [ ] 7. Final checkpoint - Ensure all tests pass
+- [x] 7. Final checkpoint - Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notes
